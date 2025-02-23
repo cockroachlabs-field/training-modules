@@ -1,0 +1,82 @@
+########################
+# Spring boot properties
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+########################
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  flyway:
+    enabled: true
+    clean-on-validation-error: true
+    baseline-on-migrate: true
+    clean-disabled: false
+  #############################
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        connection:
+          # Note: align this to be inverse of datasource.setAutoCommit(..)
+          provider_disables_autocommit: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+          batch_size: 32
+          fetch_size: 32
+          batch_versioned_data: true
+          # See: org.hibernate.cfg.BatchSettings
+        order_inserts: true
+        order_updates: true
+#        generate_statistics: true
+        hql:
+          bulk_id_strategy: org.hibernate.hql.spi.id.inline.CteValuesListBulkIdStrategy
+        cache:
+          use_minimal_puts: true
+          use_second_level_cache: false
+  #############################
+  datasource:
+    url: jdbc:postgresql://localhost:26257/training_modules?sslmode=disable
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password:
+    hikari:
+      # The property controls the maximum size that the pool is allowed to reach,
+      # including both idle and in-use connections.
+      maximum-pool-size: 32
+      # The property controls the minimum number of idle connections that HikariCP
+      # tries to maintain in the pool, including both idle and in-use connections.
+      minimum-idle: 0
+      # The number of milliseconds before the pool initialization fails, or 0 to
+      # validate connection setup but continue with pool start, or less than zero to
+      # skip all initialization checks and start the pool without delay.
+      initialization-fail-timeout: -1
+      # Set the maximum number of milliseconds that a client will wait for a connection from the pool.
+      connection-timeout: 15000
+      # Sets the maximum number of milliseconds that the pool will wait for a connection to be validated as alive.
+      validation-timeout: 5000
+      # Controls the maximum amount of time that a connection is allowed to sit idle in the pool.
+      # Must be lower than max-lifetime, lowest is 10s
+      idle-timeout: 10000
+      # Controls the maximum lifetime of a connection in the pool. When a connection reaches this timeout,
+      # even if recently used, it will be retired from the pool. An in-use connection will never be retired,
+      # only when it is idle will it be removed.
+      # Lowest possible value is 30s.
+      max-lifetime: 30000
+      # Controls the keepalive interval for a connection in the pool.
+      keepalive-time: 0
+      # Default isolation
+      transaction-isolation: TRANSACTION_SERIALIZABLE
+      # Extra driver properties
+      data-source-properties:
+        reWriteBatchedInserts: true
+        ApplicationName: "Training Modules"
+  #############################
+  # Enable JDK21 virtual threads
+  threads:
+    virtual:
+      enabled: true
+#############################
+logging:
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:%-5p}) [%-11t] %clr([%-36logger{35}]){cyan} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

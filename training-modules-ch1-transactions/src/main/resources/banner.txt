@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_YELLOW}
+^__^
+(oo)\_______      ${AnsiColor.BRIGHT_MAGENTA}Java Developer Training Modules${AnsiColor.BRIGHT_YELLOW}
+(__)\       )\/\  ${AnsiColor.BRIGHT_MAGENTA}Chapter 1 :: Transactions${AnsiColor.BRIGHT_YELLOW}
+   ||----w |
+   ||     ||
+${AnsiColor.BRIGHT_GREEN}${application.title}${application.formatted-version} powered by Spring Boot${spring-boot.formatted-version}
+${AnsiColor.BRIGHT_GREEN}Active Profiles: ${AnsiColor.BRIGHT_YELLOW}${spring.profiles.active}${AnsiColor.DEFAULT}
+${AnsiColor.BRIGHT_GREEN}   Database URL: ${AnsiColor.BRIGHT_YELLOW}${spring.datasource.url}${AnsiColor.DEFAULT}
