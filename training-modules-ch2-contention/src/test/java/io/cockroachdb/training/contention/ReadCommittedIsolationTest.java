@@ -92,7 +92,7 @@ import io.cockroachdb.training.domain.Simulation;
  * To observe this predictably we'll use two separate transaction with a controllable delay
  * between the read and write + commit operations.
  */
-@ActiveProfiles({"rc","dev"})
+@ActiveProfiles({"domain","verbose","rc"})
 public class ReadCommittedIsolationTest extends AbstractIsolationTest {
     @Order(0)
     @Test

@@ -34,7 +34,7 @@ public class FunctionalTest extends AbstractIntegrationTest {
     private UUID purchaseOrderId;
 
     @Autowired
-    protected OrderService orderService;
+    private OrderService orderService;
 
     @BeforeAll
     public void beforeAll() {

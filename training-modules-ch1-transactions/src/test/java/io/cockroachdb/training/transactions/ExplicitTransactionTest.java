@@ -16,7 +16,7 @@ import io.cockroachdb.training.util.RandomData;
 @SpringBootTest(classes = {Chapter1Application.class})
 public class ExplicitTransactionTest extends AbstractIntegrationTest {
     @Autowired
-    protected OrderService orderService;
+    private OrderService orderService;
 
     @BeforeAll
     public void beforeAll() {
@@ -26,7 +26,8 @@ public class ExplicitTransactionTest extends AbstractIntegrationTest {
     @Order(1)
     @Test
     public void whenPlacingTenOrders_thenExpectSuccess() {
-        testDataService.findRandomCustomersAndProducts(10, 5, (customers, products) -> {
+        testDataService.withRandomCustomersAndProducts(
+                10, 5, (customers, products) -> {
             IntStream.rangeClosed(1, 10).forEach(x -> {
                 PurchaseOrder.Builder orderBuilder = PurchaseOrder.builder()
                         .withCustomer(RandomData.selectRandom(customers));
@@ -40,6 +41,7 @@ public class ExplicitTransactionTest extends AbstractIntegrationTest {
                                 .then()
                 );
 
+                // Txn boundary
                 orderService.placeOrder(orderBuilder.build());
             });
             return null;

@@ -5,6 +5,7 @@ Module for demonstrating various design patterns, mainly the transactional outbo
 Key topics:
 
 - Outbox pattern via CDC
+- Inbox pattern via CDC
 
 ## Running Tests
 

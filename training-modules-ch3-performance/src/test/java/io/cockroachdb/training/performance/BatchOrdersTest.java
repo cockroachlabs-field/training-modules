@@ -37,7 +37,7 @@ public class BatchOrdersTest extends AbstractIntegrationTest {
     @ParameterizedTest
     @ValueSource(ints = {10, 250, 500, 750, 1000})
     public void whenCreatingSingletonOrders_thenSucceed(int numOrders) {
-        testDataService.findRandomCustomersAndProducts(100, 100,
+        testDataService.withRandomCustomersAndProducts(100, 100,
                 (customers, products) -> {
                     Assertions.assertFalse(customers.isEmpty(), "No customers");
                     Assertions.assertFalse(products.isEmpty(), "No products");
@@ -65,7 +65,7 @@ public class BatchOrdersTest extends AbstractIntegrationTest {
     @ParameterizedTest
     @ValueSource(ints = {10, 250, 500, 750, 1000})
     public void whenCreatingBatchOrders_thenSucceed(int numOrders) {
-        testDataService.findRandomCustomersAndProducts(100, 100,
+        testDataService.withRandomCustomersAndProducts(100, 100,
                 (customers, products) -> {
                     Assertions.assertFalse(customers.isEmpty(), "No customers");
                     Assertions.assertFalse(products.isEmpty(), "No products");

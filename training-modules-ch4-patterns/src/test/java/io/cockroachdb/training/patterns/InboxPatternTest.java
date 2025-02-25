@@ -1,49 +1,35 @@
-package io.cockroachdb.training.transactions;
-
-import java.util.UUID;
-
-import javax.sql.DataSource;
+package io.cockroachdb.training.patterns;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
-import io.cockroachdb.training.Chapter1Application;
-import io.cockroachdb.training.common.retry.TransientExceptionClassifier;
-import io.cockroachdb.training.common.retry.TransientExceptionRetryListener;
+import io.cockroachdb.training.Chapter4Application;
 import io.cockroachdb.training.domain.Product;
 import io.cockroachdb.training.domain.PurchaseOrder;
+import io.cockroachdb.training.patterns.inbox.InboxService;
 import io.cockroachdb.training.test.AbstractIntegrationTest;
 
-@SpringBootTest(classes = {Chapter1Application.class})
-public abstract class AbstractIsolationTest extends AbstractIntegrationTest {
+@ActiveProfiles({"domain"})
+@SpringBootTest(classes = {Chapter4Application.class})
+public class InboxPatternTest  extends AbstractIntegrationTest {
     @Autowired
-    protected TransientExceptionClassifier retryableExceptionClassifier;
-
-    @Autowired
-    protected TransientExceptionRetryListener transientExceptionRetryListener;
+    private InboxService inboxService;
 
     @Autowired
-    protected DataSource dataSource;
+    @Qualifier("inboxOrderService")
+    private OrderService orderService;
 
-    @Autowired
-    protected OrderService orderService;
-
-    protected UUID purchaseOrderId1;
-
-    protected UUID purchaseOrderId2;
-
-    @BeforeAll
-    public void beforeAll() {
+    @Order(1)
+    @Test
+    public void whenPlaceOneOrder_thenExpectInboxEvent() {
         createCustomersAndProducts(10, 10);
 
-        this.purchaseOrderId1 = placeOrder();
-        this.purchaseOrderId2 = placeOrder();
-    }
-
-    private UUID placeOrder() {
-        return testDataService.findRandomCustomersAndProducts(100, 100,
+        testDataService.withRandomCustomersAndProducts(10, 10,
                 (customers, products) -> {
                     Assertions.assertFalse(customers.isEmpty(), "No customers");
                     Assertions.assertFalse(products.isEmpty(), "No products");
@@ -51,6 +37,7 @@ public abstract class AbstractIsolationTest extends AbstractIntegrationTest {
                     Product product = products.getFirst();
 
                     PurchaseOrder purchaseOrder = PurchaseOrder.builder()
+                            .withGeneratedId()
                             .withCustomer(customers.getFirst())
                             .andOrderItem()
                             .withProductId(product.getId())
@@ -60,7 +47,7 @@ public abstract class AbstractIsolationTest extends AbstractIntegrationTest {
                             .then()
                             .build();
 
-                    return orderService.placeOrder(purchaseOrder).getId();
+                    return inboxService.placeOrder(purchaseOrder);
                 });
     }
 }

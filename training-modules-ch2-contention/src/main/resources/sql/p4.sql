@@ -39,11 +39,15 @@ commit; -- T3
 begin; set transaction isolation level read committed; -- T1
 begin; set transaction isolation level read committed; -- T2
 begin; set transaction isolation level read committed; -- T3
+show transaction_isolation; -- t1
+show transaction_isolation; -- t2
+show transaction_isolation; -- t3
 select * from purchase_order where id = '00000000-0000-0000-0000-000000000001'; -- T1, reads 'placed'
 select * from purchase_order where id = '00000000-0000-0000-0000-000000000001'; -- T2, reads 'placed'
 select * from purchase_order where id = '00000000-0000-0000-0000-000000000001'; -- T3, reads 'placed'
 update purchase_order set status = 'confirmed' where id = '00000000-0000-0000-0000-000000000001'; -- T1
 update purchase_order set status = 'cancelled' where id = '00000000-0000-0000-0000-000000000001'; -- T2, BLOCKS
+update purchase_order set status = 'delivered' where id = '00000000-0000-0000-0000-000000000001'; -- T2, BLOCKS
 commit; -- T1. This unblocks T2, so T1's update to 'confirmed' is overwritten (aka a lost update aka last-write-wins)
 select * from purchase_order where id = '00000000-0000-0000-0000-000000000001'; -- T3, reads 'confirmed'
 commit; -- T2

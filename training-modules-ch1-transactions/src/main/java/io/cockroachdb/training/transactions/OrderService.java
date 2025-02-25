@@ -21,9 +21,9 @@ public interface OrderService {
 
     Optional<PurchaseOrder> findOrderById(UUID id);
 
-    PurchaseOrder placeOrderWithValidation(PurchaseOrder order);
-
     PurchaseOrder placeOrder(PurchaseOrder order);
+
+    PurchaseOrder placeOrderWithValidation(PurchaseOrder order);
 
     void updateOrder(UUID id, ShipmentStatus preCondition, ShipmentStatus postCondition,
                      Simulation simulation);

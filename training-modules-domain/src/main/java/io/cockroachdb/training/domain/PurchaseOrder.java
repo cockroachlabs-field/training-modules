@@ -24,11 +24,18 @@ public class PurchaseOrder extends AbstractEntity<UUID> {
     }
 
     public static final class Builder {
+        private UUID id;
+
         private Customer customer;
 
         private final List<PurchaseOrderItem> orderItems = new ArrayList<>();
 
         private Builder() {
+        }
+
+        public Builder withGeneratedId() {
+            this.id = UUID.randomUUID();
+            return this;
         }
 
         public Builder withCustomer(Customer customer) {
@@ -49,6 +56,7 @@ public class PurchaseOrder extends AbstractEntity<UUID> {
             }
 
             PurchaseOrder order = new PurchaseOrder();
+            order.id = id;
             order.customer = this.customer;
             order.deliveryAddress = customer.getAddress();
             order.orderItems.addAll(this.orderItems);

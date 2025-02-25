@@ -1,4 +1,4 @@
-package io.cockroachdb.training.patterns;
+package io.cockroachdb.training.patterns.outbox;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,14 +10,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.cockroachdb.training.patterns.PurchaseOrderEvent;
+
 @Service
-public class ChangeFeedListener {
+public class OutboxChangeFeedListener {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    @KafkaListener(id = "outbox-demo", topics = "orders", groupId = "training-modules",
+    @KafkaListener(id = "outbox-demo", topics = "orders-outbox", groupId = "training-modules",
             properties = {"spring.json.value.default.type=io.cockroachdb.training.patterns.PurchaseOrderEvent"})
     public void onPurchaseOrderEvent(PurchaseOrderEvent event)
             throws JsonProcessingException {

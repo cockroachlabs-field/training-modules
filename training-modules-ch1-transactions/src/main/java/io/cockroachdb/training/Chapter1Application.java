@@ -5,12 +5,10 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication(exclude = {
         TransactionAutoConfiguration.class
 })
-@Configuration
 public class Chapter1Application {
     public static void main(String[] args) {
         new SpringApplicationBuilder(Chapter1Application.class)

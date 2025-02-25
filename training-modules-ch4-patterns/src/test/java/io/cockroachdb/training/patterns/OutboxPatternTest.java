@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -16,6 +17,7 @@ import io.cockroachdb.training.test.AbstractIntegrationTest;
 @SpringBootTest(classes = {Chapter4Application.class})
 public class OutboxPatternTest extends AbstractIntegrationTest {
     @Autowired
+    @Qualifier("outboxOrderService")
     private OrderService orderService;
 
     @Order(1)
@@ -23,7 +25,7 @@ public class OutboxPatternTest extends AbstractIntegrationTest {
     public void whenPlaceOneOrder_thenExpectOutboxEvent() {
         createCustomersAndProducts(10, 10);
 
-        PurchaseOrder po = testDataService.findRandomCustomersAndProducts(10, 10,
+        PurchaseOrder po = testDataService.withRandomCustomersAndProducts(10, 10,
                 (customers, products) -> {
                     Assertions.assertFalse(customers.isEmpty(), "No customers");
                     Assertions.assertFalse(products.isEmpty(), "No products");

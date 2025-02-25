@@ -45,7 +45,7 @@ public class QueryTest extends AbstractIntegrationTest {
         if (!testDataService.hasProductData()) {
             createCustomersAndProducts(100, 100);
 
-            testDataService.findRandomCustomersAndProducts(100, 100,
+            testDataService.withRandomCustomersAndProducts(100, 100,
                     (customers, products) -> {
                         Assertions.assertFalse(customers.isEmpty(), "No customers");
                         Assertions.assertFalse(products.isEmpty(), "No products");

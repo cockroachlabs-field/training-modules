@@ -1,17 +1,28 @@
 package io.cockroachdb.training.transactions;
 
 import java.time.Duration;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
+import javax.sql.DataSource;
+
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import io.cockroachdb.training.Chapter1Application;
 import io.cockroachdb.training.common.aspect.MetadataUtils;
+import io.cockroachdb.training.common.retry.TransientExceptionClassifier;
+import io.cockroachdb.training.common.retry.TransientExceptionRetryListener;
+import io.cockroachdb.training.domain.Product;
 import io.cockroachdb.training.domain.PurchaseOrder;
 import io.cockroachdb.training.domain.ShipmentStatus;
 import io.cockroachdb.training.domain.Simulation;
+import io.cockroachdb.training.test.AbstractIntegrationTest;
 
 /**
  * Assume there is one existing order with status `placed`. We will read that order and
@@ -43,7 +54,50 @@ import io.cockroachdb.training.domain.Simulation;
  * abort;  -- T1. There's nothing else we can do, this transaction has failed
  * </pre>
  */
-public class TransactionRetryTest extends AbstractIsolationTest {
+@SpringBootTest(classes = {Chapter1Application.class})
+public class TransactionRetryTest extends AbstractIntegrationTest {
+    @Autowired
+    private TransientExceptionClassifier retryableExceptionClassifier;
+
+    @Autowired
+    private TransientExceptionRetryListener transientExceptionRetryListener;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private OrderService orderService;
+
+    private UUID purchaseOrderId;
+
+    @BeforeAll
+    public void beforeAll() {
+        createCustomersAndProducts(10, 10);
+        this.purchaseOrderId = placeOrder();
+    }
+
+    private UUID placeOrder() {
+        return testDataService.withRandomCustomersAndProducts(100, 100,
+                (customers, products) -> {
+                    Assertions.assertFalse(customers.isEmpty(), "No customers");
+                    Assertions.assertFalse(products.isEmpty(), "No products");
+
+                    Product product = products.getFirst();
+
+                    PurchaseOrder purchaseOrder = PurchaseOrder.builder()
+                            .withCustomer(customers.getFirst())
+                            .andOrderItem()
+                            .withProductId(product.getId())
+                            .withProductSku(product.getSku())
+                            .withUnitPrice(product.getPrice())
+                            .withQuantity(1)
+                            .then()
+                            .build();
+
+                    return orderService.placeOrder(purchaseOrder).getId();
+                });
+    }
+
     @Order(0)
     @Test
     public void whenCheckingIsolationLevel_thenExpect1SR() {
@@ -57,7 +111,7 @@ public class TransactionRetryTest extends AbstractIsolationTest {
         transientExceptionRetryListener.clear();
 
         CompletableFuture<?> t1 = CompletableFuture.runAsync(() -> {
-            orderService.updateOrder(purchaseOrderId1,
+            orderService.updateOrder(purchaseOrderId,
                     ShipmentStatus.placed,
                     ShipmentStatus.confirmed,
                     Simulation.readModifyWrite()
@@ -65,7 +119,7 @@ public class TransactionRetryTest extends AbstractIsolationTest {
         });
 
         CompletableFuture<?> t2 = CompletableFuture.runAsync(() -> {
-            orderService.updateOrder(purchaseOrderId1,
+            orderService.updateOrder(purchaseOrderId,
                     ShipmentStatus.placed,
                     ShipmentStatus.cancelled,
                     Simulation.readModifyWrite());
@@ -74,7 +128,7 @@ public class TransactionRetryTest extends AbstractIsolationTest {
         // Expect both T1 and T2 to succeed, which will not happen w/o retries
         CompletableFuture.allOf(t1, t2).join();
 
-        PurchaseOrder purchaseOrder = orderService.findOrderById(purchaseOrderId1).orElseThrow();
+        PurchaseOrder purchaseOrder = orderService.findOrderById(purchaseOrderId).orElseThrow();
         Assertions.assertEquals(ShipmentStatus.cancelled, purchaseOrder.getStatus());
 
         Assertions.assertEquals(2, transientExceptionRetryListener.getSuccess());

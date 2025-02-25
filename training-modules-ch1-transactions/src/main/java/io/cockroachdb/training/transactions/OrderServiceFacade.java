@@ -16,8 +16,6 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
-import org.springframework.util.Assert;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
@@ -92,23 +90,6 @@ public class OrderServiceFacade implements OrderService {
         return orderRepository.findById(id);
     }
 
-    @TransactionImplicit
-    @Override
-    public PurchaseOrder placeOrderWithValidation(PurchaseOrder order) throws BusinessException {
-        AssertUtils.assertNoTransaction();
-
-        // Pre-validate order item products outside of DB txn scope
-        order.getOrderItems().forEach(orderItem -> {
-            UUID productId = Objects.requireNonNull(orderItem.getProduct().getId());
-            inventoryService.validateProductInventory(productId,
-                    orderItem.getUnitPrice(),
-                    orderItem.getQuantity());
-        });
-
-        OrderService selfProxy = objectProvider.getObject();
-        return selfProxy.placeOrder(order);
-    }
-
     @TransactionExplicit
     @Override
     public PurchaseOrder placeOrder(PurchaseOrder order) throws BusinessException {
@@ -131,6 +112,23 @@ public class OrderServiceFacade implements OrderService {
         } catch (DataIntegrityViolationException e) {
             throw new BusinessException("Constraint violation", e);
         }
+    }
+
+    @TransactionImplicit
+    @Override
+    public PurchaseOrder placeOrderWithValidation(PurchaseOrder order) throws BusinessException {
+        AssertUtils.assertNoTransaction();
+
+        // Pre-validate order item products outside of DB txn scope
+        order.getOrderItems().forEach(orderItem -> {
+            UUID productId = Objects.requireNonNull(orderItem.getProduct().getId());
+            inventoryService.validateProductInventory(productId,
+                    orderItem.getUnitPrice(),
+                    orderItem.getQuantity());
+        });
+
+        OrderService selfProxy = objectProvider.getObject();
+        return selfProxy.placeOrder(order);
     }
 
     @Override

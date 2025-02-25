@@ -62,7 +62,7 @@ public class TestData {
     }
 
     @TransactionImplicit
-    public <T> T findRandomCustomersAndProducts(int customerCount, int productCount,
+    public <T> T withRandomCustomersAndProducts(int customerCount, int productCount,
                                                 BiConsumerAction<List<Customer>, List<Product>, T> action) {
         List<Customer> customers = customerRepository.findAllById(
                 customerRepository.findRandomUniqueIds(customerCount));

@@ -3,18 +3,20 @@
 #db_url="jdbc:postgresql://localhost:26257/training_modules?sslmode=disable"
 #db_user=root
 #db_password=cockroach
+
 spring_profile="domain"
+#spring_profile="domain,verbose"
 
 ####################################
 # Do not edit past this line
 ####################################
 
-PS3='Please select test class '
+PS3='Please select test class: '
 
 unset options i
 while IFS= read -r -d $'\0' f; do
   options[i++]="$f"
-done < <(find src/test/java/ -name '*Test.java'  -print0 )
+done < <(find src/test/java -name '*Test.java'  -print0 )
 
 select opt in "${options[@]}" "Quit"; do
   case $opt in

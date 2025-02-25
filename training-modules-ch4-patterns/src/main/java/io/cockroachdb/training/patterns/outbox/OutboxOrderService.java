@@ -1,4 +1,4 @@
-package io.cockroachdb.training.patterns;
+package io.cockroachdb.training.patterns.outbox;
 
 import java.util.Objects;
 
@@ -11,13 +11,14 @@ import io.cockroachdb.training.common.annotation.TransactionExplicit;
 import io.cockroachdb.training.domain.Product;
 import io.cockroachdb.training.domain.PurchaseOrder;
 import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.patterns.outbox.OutboxOperation;
+import io.cockroachdb.training.patterns.BusinessException;
+import io.cockroachdb.training.patterns.OrderService;
 import io.cockroachdb.training.repository.OrderRepository;
 import io.cockroachdb.training.repository.ProductRepository;
 import io.cockroachdb.training.util.AssertUtils;
 
 @Service
-public class OrderServiceFacade implements OrderService {
+public class OutboxOrderService implements OrderService {
     @Autowired
     private ProductRepository productRepository;
 

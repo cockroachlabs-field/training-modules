@@ -19,7 +19,7 @@ public class TransactionLifetimeTest extends AbstractIntegrationTest {
     @Order(1)
     @Test
     public void whenPlaceOrderWithForeignServiceValidation_thenExpectShortLivedTransaction() {
-        testDataService.findRandomCustomersAndProducts(100, 100,
+        testDataService.withRandomCustomersAndProducts(100, 100,
                 (customers, products) -> {
                     Assertions.assertFalse(customers.isEmpty(), "No customers");
                     Assertions.assertFalse(products.isEmpty(), "No products");
@@ -36,9 +36,7 @@ public class TransactionLifetimeTest extends AbstractIntegrationTest {
                             .then()
                             .build();
 
-                    orderService.placeOrderWithValidation(purchaseOrder);
-
-                    return null;
+                    return orderService.placeOrderWithValidation(purchaseOrder);
                 });
     }
 }

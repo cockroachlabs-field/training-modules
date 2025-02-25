@@ -43,7 +43,7 @@ public abstract class AbstractIsolationTest extends AbstractIntegrationTest {
     }
 
     private UUID placeOrder() {
-        return testDataService.findRandomCustomersAndProducts(100, 100,
+        return testDataService.withRandomCustomersAndProducts(100, 100,
                 (customers, products) -> {
                     Assertions.assertFalse(customers.isEmpty(), "No customers");
                     Assertions.assertFalse(products.isEmpty(), "No products");
