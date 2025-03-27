@@ -21,11 +21,12 @@ presentation deck.
 
 # Modules
 
-- [training-modules-ch1-transactions](training-modules-ch1-transactions/README.md)
-- [training-modules-ch2-contention](training-modules-ch2-contention/README.md)
-- [training-modules-ch3-performance](training-modules-ch3-performance/README.md)
-- [training-modules-common](training-modules-common/README.md)
-- [training-modules-domain](training-modules-domain/README.md)
+- [ch1-transactions](ch1-transactions/README.md)
+- [ch2-contention](ch2-contention/README.md)
+- [ch3-performance](ch3-performance/README.md)
+- [ch4-patterns](ch4-patterns/README.md)
+- [common](common/README.md)
+- [domain](domain/README.md)
 
 # Terms of Use
 
@@ -69,8 +70,17 @@ Ubuntu:
 
 See [start a local cluster](https://www.cockroachlabs.com/docs/v24.2/start-a-local-cluster)
 for setup instructions. You can also use CockroachDB Cloud (basic, standard or advanced).
-A valid license is needed for some of the chapters that use enterprise features like 
-follower reads and CDC.
+
+Then create the database, for an insecure cluster:
+
+    cockroach sql --insecure -e "create database training_modules"
+
+alternatively, for a secure cluster:
+
+    cockroach sql --certs-dir=certs -e "CREATE DATABASE training_modules; ALTER ROLE root WITH PASSWORD 'cockroach'"
+
+An [enterprise license](https://www.cockroachlabs.com/docs/stable/licensing-faqs.html#obtain-a-license) is needed for some of the chapters that 
+use enterprise features like follower reads and CDC.
 
 ## Building
 
@@ -85,9 +95,9 @@ follower reads and CDC.
 
 # Running
 
-Pick the training chapter you want to run the tests in, for example.
+Pick the training chapter you want to run the tests in, for example chapter 1.
 
-    cd training-modules-ch1-transactions
+    cd ch1-transactions
 
 Then run the test starter script which will present a menu of options:
 

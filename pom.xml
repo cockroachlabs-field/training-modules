@@ -27,12 +27,12 @@
     </properties>
 
     <modules>
-        <module>training-modules-ch1-transactions</module>
-        <module>training-modules-ch2-contention</module>
-        <module>training-modules-ch3-performance</module>
-        <module>training-modules-ch4-patterns</module>
-        <module>training-modules-common</module>
-        <module>training-modules-domain</module>
+        <module>ch1-transactions</module>
+        <module>ch2-contention</module>
+        <module>ch3-performance</module>
+        <module>ch4-patterns</module>
+        <module>common</module>
+        <module>domain</module>
     </modules>
 
     <dependencyManagement>

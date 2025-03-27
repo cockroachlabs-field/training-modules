@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>training-modules-ch2-contention</artifactId>
+    <artifactId>ch3-performance</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -27,7 +27,6 @@
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>

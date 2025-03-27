@@ -42,45 +42,44 @@ public class QueryTest extends AbstractIntegrationTest {
     @Order(0)
     @Test
     public void whenStartingTest_thenBuildCatalogIfNeeded() {
-        if (!testDataService.hasProductData()) {
-            createCustomersAndProducts(100, 100);
+        createCustomersAndProducts(100, 100);
 
-            testDataService.withRandomCustomersAndProducts(100, 100,
-                    (customers, products) -> {
-                        Assertions.assertFalse(customers.isEmpty(), "No customers");
-                        Assertions.assertFalse(products.isEmpty(), "No products");
+        testDataService.withRandomCustomersAndProducts(100, 100,
+                (customers, products) -> {
+                    Assertions.assertFalse(customers.isEmpty(), "No customers");
+                    Assertions.assertFalse(products.isEmpty(), "No products");
 
-                        List<PurchaseOrder> purchaseOrders = new ArrayList<>();
+                    List<PurchaseOrder> purchaseOrders = new ArrayList<>();
 
-                        IntStream.rangeClosed(1, numOrders).forEach(value -> {
-                            Customer customer = RandomData.selectRandom(customers);
-                            Product product = RandomData.selectRandom(products);
+                    IntStream.rangeClosed(1, numOrders).forEach(value -> {
+                        Customer customer = RandomData.selectRandom(customers);
+                        Product product = RandomData.selectRandom(products);
 
-                            purchaseOrders.add(PurchaseOrder.builder()
-                                    .withCustomer(customer)
-                                    .andOrderItem()
-                                    .withProductId(product.getId())
-                                    .withProductSku(product.getSku())
-                                    .withUnitPrice(product.getPrice())
-                                    .withQuantity(1)
-                                    .then()
-                                    .build());
-                        });
-
-                        final ProgressMeter progressMeter = new ProgressMeter()
-                                .setStartTime(Instant.now())
-                                .setTotal(purchaseOrders.size());
-                        final AtomicInteger created = new AtomicInteger();
-
-                        orderService.placeOrders(purchaseOrders, 64, batchSize -> {
-                            progressMeter.setCurrent(created.addAndGet(batchSize));
-                            progressMeter.setLabel("[%,d orders remain]".formatted(progressMeter.getTotal() - created.get()));
-                            progressMeter.printProgressBar();
-                        });
-
-                        return null;
+                        purchaseOrders.add(PurchaseOrder.builder()
+                                .withCustomer(customer)
+                                .andOrderItem()
+                                .withProductId(product.getId())
+                                .withProductSku(product.getSku())
+                                .withUnitPrice(product.getPrice())
+                                .withQuantity(1)
+                                .then()
+                                .build());
                     });
-        }
+
+                    final ProgressMeter progressMeter = new ProgressMeter()
+                            .setStartTime(Instant.now())
+                            .setTotal(purchaseOrders.size());
+                    final AtomicInteger created = new AtomicInteger();
+
+                    orderService.placeOrders(purchaseOrders, 64, batchSize -> {
+                        progressMeter.setCurrent(created.addAndGet(batchSize));
+                        progressMeter.setLabel(
+                                "[%,d orders remain]".formatted(progressMeter.getTotal() - created.get()));
+                        progressMeter.printProgressBar();
+                    });
+
+                    return null;
+                });
     }
 
     @Order(1)

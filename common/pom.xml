@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>training-modules-common</artifactId>
+    <artifactId>common</artifactId>
     <packaging>jar</packaging>
 
     <description>

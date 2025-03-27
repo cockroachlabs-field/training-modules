@@ -9,4 +9,4 @@ spring:
     hikari:
       data-source-properties:
         reWriteBatchArrays: true
-        reWriteBatchedInserts: true
+        reWri teBatchedInserts: true

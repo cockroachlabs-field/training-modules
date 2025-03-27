@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>training-modules-ch1-transactions</artifactId>
+    <artifactId>ch1-transactions</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
