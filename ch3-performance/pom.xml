@@ -16,12 +16,12 @@
     <dependencies>
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>training-modules-domain</artifactId>
+            <artifactId>domain</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>training-modules-domain</artifactId>
+            <artifactId>domain</artifactId>
             <version>${project.version}</version>
             <classifier>tests</classifier>
             <type>test-jar</type>

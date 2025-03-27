@@ -1,3 +1,7 @@
+<p>	
+	<a href="https://github.com/cockroachlabs-field/training-modules/actions/workflows/maven.yml"><img src="https://github.com/cockroachlabs-field/training-modules/actions/workflows/maven.yml/badge.svg?branch=main" alt="">
+</p>
+
 <!-- TOC -->
 * [Java Developer Training Modules](#java-developer-training-modules)
 * [Modules](#modules)
