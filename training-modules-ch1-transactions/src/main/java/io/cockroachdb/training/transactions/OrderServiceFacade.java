@@ -23,6 +23,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
+import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
 import io.cockroachdb.training.common.annotation.TransactionImplicit;
 import io.cockroachdb.training.domain.Customer;
@@ -40,7 +41,7 @@ import io.cockroachdb.training.util.AssertUtils;
  * transaction boundary and gateway to all business functionality such as order
  * placement.
  */
-@Service
+@ServiceFacade
 public class OrderServiceFacade implements OrderService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

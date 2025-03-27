@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
-import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,16 +32,13 @@ public class InboxJdbcRepository implements InboxRepository {
 
     @Override
     public void writeEvent(Object event, String aggregateType) {
-//        Assert.isTrue(TransactionSynchronizationManager.isActualTransactionActive(),
-//                "Expected existing transaction - check advisor @Order");
-
         try {
             String json = objectMapper.writer().writeValueAsString(event);
 
             logger.info("Writing inbox event: {}", json);
 
             jdbcTemplate.update(
-                    "INSERT INTO inbox (aggregate_type,payload) VALUES (?,?)",
+                    "UPSERT INTO inbox (aggregate_type,payload) VALUES (?,?)",
                     ps -> {
                         ps.setString(1, aggregateType);
                         ps.setObject(2, json);

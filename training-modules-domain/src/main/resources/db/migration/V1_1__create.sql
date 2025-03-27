@@ -27,6 +27,9 @@ create table product
 
 create type if not exists shipment_status as enum ('placed', 'confirmed', 'cancelled','delivered');
 
+-- Not supported
+-- create cast (varchar as shipment_status) with inout as implicit;
+
 create table purchase_order
 (
     id             uuid            not null default gen_random_uuid(),

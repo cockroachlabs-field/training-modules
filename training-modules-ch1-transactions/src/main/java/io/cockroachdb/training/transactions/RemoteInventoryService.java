@@ -7,9 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-@Service
+import io.cockroachdb.training.common.annotation.ServiceFacade;
+
+@ServiceFacade
 public class RemoteInventoryService implements InventoryService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -17,10 +18,10 @@ public class RemoteInventoryService implements InventoryService {
     public void validateProductInventory(UUID id, BigDecimal price, int quantity) {
         // Were slow but always succeed
         try {
-            logger.info("Validating product id=%s, price=%s, qty=%d".formatted(id,price,quantity));
+            logger.info("Validating product id=%s, price=%s, qty=%d".formatted(id, price, quantity));
             TimeUnit.MILLISECONDS.sleep(ThreadLocalRandom.current().nextLong(1000, 5000));
             logger.info("Validated product id=%s, price=%s, qty=%d - all good ٩(^‿^)۶"
-                    .formatted(id,price,quantity));
+                    .formatted(id, price, quantity));
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

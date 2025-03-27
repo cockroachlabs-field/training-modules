@@ -12,7 +12,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
-import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
@@ -20,6 +19,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
+import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
 import io.cockroachdb.training.domain.Product;
 import io.cockroachdb.training.domain.PurchaseOrder;
@@ -34,7 +34,7 @@ import io.cockroachdb.training.util.AssertUtils;
  * transaction boundary and gateway to all business functionality such as order
  * placement.
  */
-@Service
+@ServiceFacade
 public class OrderServiceFacade implements OrderService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

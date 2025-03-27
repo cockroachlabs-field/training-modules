@@ -2,12 +2,12 @@ package io.cockroachdb.training.patterns.inbox;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Retryable;
-import org.springframework.stereotype.Service;
 
+import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TransactionImplicit;
 import io.cockroachdb.training.domain.PurchaseOrder;
 
-@Service
+@ServiceFacade
 public class InboxService {
     @Autowired
     private InboxRepository inboxRepository;

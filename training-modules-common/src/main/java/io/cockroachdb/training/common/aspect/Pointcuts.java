@@ -23,7 +23,7 @@ public class Pointcuts {
     }
 
     /**
-     * Pointcut expression matching all transactional boundaries.
+     * Pointcut expression matching all non-transactional operations.
      */
     @Pointcut("execution(public * *(..)) "
             + "&& @annotation(transactionImplicit)")

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TimeTravel;
 import io.cockroachdb.training.common.annotation.TimeTravelMode;
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
@@ -32,7 +33,7 @@ import io.cockroachdb.training.util.StreamUtils;
  * transaction boundary and gateway to all business functionality such as order
  * placement.
  */
-@Service
+@ServiceFacade
 public class OrderServiceFacade implements OrderService {
     @Autowired
     private ProductRepository productRepository;

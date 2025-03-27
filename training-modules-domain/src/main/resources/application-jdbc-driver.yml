@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.CockroachDialect
+  datasource:
+    url: jdbc:cockroachdb://localhost:26257/training_modules?sslmode=disable
+    driver-class-name: io.cockroachdb.jdbc.CockroachDriver
+    hikari:
+      data-source-properties:
+        reWriteBatchArrays: true
+        reWriteBatchedInserts: true

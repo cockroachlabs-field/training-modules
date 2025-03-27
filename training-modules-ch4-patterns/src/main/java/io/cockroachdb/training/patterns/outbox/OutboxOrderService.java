@@ -5,8 +5,8 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.retry.annotation.Retryable;
-import org.springframework.stereotype.Service;
 
+import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
 import io.cockroachdb.training.domain.Product;
 import io.cockroachdb.training.domain.PurchaseOrder;
@@ -17,7 +17,7 @@ import io.cockroachdb.training.repository.OrderRepository;
 import io.cockroachdb.training.repository.ProductRepository;
 import io.cockroachdb.training.util.AssertUtils;
 
-@Service
+@ServiceFacade
 public class OutboxOrderService implements OrderService {
     @Autowired
     private ProductRepository productRepository;

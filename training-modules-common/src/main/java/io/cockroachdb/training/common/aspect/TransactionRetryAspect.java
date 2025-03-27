@@ -71,7 +71,7 @@ public class TransactionRetryAspect {
 
         // Grab from type if needed (for non-annotated methods)
         if (retryable == null) {
-            retryable = AnnotationUtils.findAnnotation(pjp.getSignature().getDeclaringType(), Retryable.class);
+            retryable = findAnnotation(pjp, Retryable.class);
         }
 
         Assert.notNull(retryable, "No @Retryable annotation found!?");
