@@ -1,4 +1,4 @@
-package io.cockroachdb.training.config;
+package io.cockroachdb.training.domain.config;
 
 import javax.sql.DataSource;
 

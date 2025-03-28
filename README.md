@@ -3,9 +3,8 @@
 </p>
 
 <!-- TOC -->
-* [Java Developer Training Modules](#java-developer-training-modules)
+* [About](#about)
 * [Modules](#modules)
-* [Terms of Use](#terms-of-use)
 * [Compatibility](#compatibility)
 * [Setup](#setup)
   * [Prerequisites](#prerequisites)
@@ -15,29 +14,25 @@
     * [Clone the project](#clone-the-project)
     * [Build the artifact](#build-the-artifact)
 * [Running](#running)
+* [Terms of Use](#terms-of-use)
 <!-- TOC -->
 
-# Java Developer Training Modules
+# About
+
+<img align="left" src="logo.png" width="64"/>
 
 Spring Boot code samples referenced from the 
-[Java Developer Training]([Spring](https://docs.google.com/presentation/d/1-uUnbs9TPBW-ISPGW4D6ukms5Kogelh9vK-2QOGLt_k/edit?usp=sharing))
+[Java Developer Training]([Spring](https://docs.google.com/presentation/d/1-uUnbs9TPBW-ISPGW4D6ukms5Kogelh9vK-2QOGLt_k/edit?usp=sharing)) 
 presentation deck.
 
 # Modules
 
-- [ch1-transactions](ch1-transactions/README.md)
-- [ch2-contention](ch2-contention/README.md)
-- [ch3-performance](ch3-performance/README.md)
-- [ch4-patterns](ch4-patterns/README.md)
-- [common](common/README.md)
-- [domain](domain/README.md)
-
-# Terms of Use
-
-This tool is not supported by Cockroach Labs. Use of this tool is entirely at your
-own risk and Cockroach Labs makes no guarantees or warranties about its operation.
-
-See [MIT](LICENSE.txt) for terms and conditions.
+- [Chapter 1 :: Transactions](ch1-transactions/README.md)
+- [Chapter 2 :: Contention](ch2-contention/README.md)
+- [Chapter 3 :: Performance](ch3-performance/README.md)
+- [Chapter 4 :: Patterns](ch4-patterns/README.md)
+- [Common](common/README.md)
+- [Domain](domain/README.md)
 
 # Compatibility
 
@@ -109,6 +104,12 @@ Then run the test starter script which will present a menu of options:
 
 If you need to connect to a CockroachCloud cluster or non-local cluster, you can edit the
 `./run-server.sh` file accordingly.
+
+# Terms of Use
+
+Use of this project is entirely at your own risk and Cockroach Labs makes no guarantees or warranties about its operation.
+
+See [MIT](LICENSE.txt) for terms and conditions.
 
 ---
 

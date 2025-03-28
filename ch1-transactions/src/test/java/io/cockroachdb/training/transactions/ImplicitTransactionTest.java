@@ -9,9 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import io.cockroachdb.training.Chapter1Application;
-import io.cockroachdb.training.domain.Customer;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.model.Customer;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
 
 @SpringBootTest(classes = {Chapter1Application.class})
 public class ImplicitTransactionTest extends AbstractIntegrationTest {

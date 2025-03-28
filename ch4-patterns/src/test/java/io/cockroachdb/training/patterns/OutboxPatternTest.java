@@ -9,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import io.cockroachdb.training.Chapter4Application;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
 
 @ActiveProfiles({"domain"})
 @SpringBootTest(classes = {Chapter4Application.class})

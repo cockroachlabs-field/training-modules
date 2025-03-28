@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.function.Consumer;
 
-import io.cockroachdb.training.domain.PurchaseOrder;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
 
 public interface OrderService {
     BigDecimal sumOrderTotals();

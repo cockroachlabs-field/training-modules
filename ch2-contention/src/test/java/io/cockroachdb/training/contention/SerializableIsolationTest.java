@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import jakarta.persistence.OptimisticLockException;
 
 import io.cockroachdb.training.common.aspect.MetadataUtils;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.domain.Simulation;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.model.Simulation;
 
 /**
  * Assume there is one existing order with status `placed`. We will read that order and

@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import io.cockroachdb.training.Chapter3Application;
-import io.cockroachdb.training.domain.Customer;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
-import io.cockroachdb.training.util.RandomData;
+import io.cockroachdb.training.domain.model.Customer;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.util.RandomData;
 
 @SpringBootTest(classes = {Chapter3Application.class})
 public class BatchOrdersTest extends AbstractIntegrationTest {

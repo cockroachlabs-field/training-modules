@@ -1,12 +1,12 @@
-package io.cockroachdb.training.test;
+package io.cockroachdb.training.domain.test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import io.cockroachdb.training.util.RandomData;
-import io.cockroachdb.training.domain.Address;
-import io.cockroachdb.training.domain.Customer;
-import io.cockroachdb.training.domain.Product;
+import io.cockroachdb.training.domain.model.Address;
+import io.cockroachdb.training.domain.model.Customer;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.util.RandomData;
 
 public abstract class TestDoubles {
     private TestDoubles() {

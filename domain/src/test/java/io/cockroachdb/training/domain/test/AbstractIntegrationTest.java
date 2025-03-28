@@ -1,4 +1,4 @@
-package io.cockroachdb.training.test;
+package io.cockroachdb.training.domain.test;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;

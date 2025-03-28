@@ -1,4 +1,4 @@
-package io.cockroachdb.training.util;
+package io.cockroachdb.training.domain.util;
 
 import java.util.Locale;
 

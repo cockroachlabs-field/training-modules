@@ -33,7 +33,7 @@ public class ExponentialBackoffRetryHandler implements RetryHandler {
                                          long maxBackoff) {
         try {
             long backoffMillis = Math.min((long) (Math.pow(2, methodCalls)
-                    + ThreadLocalRandom.current().nextInt(1000)), maxBackoff);
+                                                  + ThreadLocalRandom.current().nextInt(1000)), maxBackoff);
 
             logger.warn("Transient SQL error (%s) for method [%s] attempt (%d) backoff %s ms: %s".formatted(
                     sqlException.getSQLState(),

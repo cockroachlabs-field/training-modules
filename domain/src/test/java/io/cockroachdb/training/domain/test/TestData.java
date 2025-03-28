@@ -1,4 +1,4 @@
-package io.cockroachdb.training.test;
+package io.cockroachdb.training.domain.test;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -11,12 +11,12 @@ import org.springframework.util.Assert;
 
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
 import io.cockroachdb.training.common.annotation.TransactionImplicit;
-import io.cockroachdb.training.domain.Customer;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.repository.CustomerRepository;
-import io.cockroachdb.training.repository.OrderRepository;
-import io.cockroachdb.training.repository.ProductRepository;
-import io.cockroachdb.training.util.StreamUtils;
+import io.cockroachdb.training.domain.model.Customer;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.repository.CustomerRepository;
+import io.cockroachdb.training.domain.repository.OrderRepository;
+import io.cockroachdb.training.domain.repository.ProductRepository;
+import io.cockroachdb.training.domain.util.StreamUtils;
 
 @Service
 public class TestData {

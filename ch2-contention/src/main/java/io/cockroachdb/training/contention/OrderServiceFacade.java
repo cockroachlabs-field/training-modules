@@ -21,13 +21,13 @@ import jakarta.persistence.TypedQuery;
 
 import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.domain.Simulation;
-import io.cockroachdb.training.repository.OrderRepository;
-import io.cockroachdb.training.repository.ProductRepository;
-import io.cockroachdb.training.util.AssertUtils;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.model.Simulation;
+import io.cockroachdb.training.domain.repository.OrderRepository;
+import io.cockroachdb.training.domain.repository.ProductRepository;
+import io.cockroachdb.training.domain.util.AssertUtils;
 
 /**
  * Business service facade for the order system. This service represents the

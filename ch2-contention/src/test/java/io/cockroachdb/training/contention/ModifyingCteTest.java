@@ -20,7 +20,7 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import io.cockroachdb.training.Chapter2Application;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
 
 @SpringBootTest(classes = {Chapter2Application.class})
 public class ModifyingCteTest extends AbstractIntegrationTest {

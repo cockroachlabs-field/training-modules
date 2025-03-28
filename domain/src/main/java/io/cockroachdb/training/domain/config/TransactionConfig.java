@@ -1,4 +1,4 @@
-package io.cockroachdb.training.config;
+package io.cockroachdb.training.domain.config;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Configuration;

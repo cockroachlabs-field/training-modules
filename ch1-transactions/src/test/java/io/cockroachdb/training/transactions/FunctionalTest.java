@@ -18,13 +18,13 @@ import org.springframework.data.domain.PageRequest;
 
 import io.cockroachdb.training.Chapter1Application;
 import io.cockroachdb.training.common.aspect.MetadataUtils;
-import io.cockroachdb.training.domain.Customer;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.PurchaseOrderItem;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.domain.Simulation;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.model.Customer;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.PurchaseOrderItem;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.model.Simulation;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
 
 @SpringBootTest(classes = {Chapter1Application.class})
 public class FunctionalTest extends AbstractIntegrationTest {

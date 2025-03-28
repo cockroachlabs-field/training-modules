@@ -12,9 +12,9 @@ import org.springframework.test.context.ActiveProfiles;
 import jakarta.persistence.LockModeType;
 
 import io.cockroachdb.training.common.aspect.MetadataUtils;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.domain.Simulation;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.model.Simulation;
 
 /**
  * Assume there is one existing order with status `placed`. We will read that order and
@@ -92,7 +92,7 @@ import io.cockroachdb.training.domain.Simulation;
  * To observe this predictably we'll use two separate transaction with a controllable delay
  * between the read and write + commit operations.
  */
-@ActiveProfiles({"domain","verbose","rc"})
+@ActiveProfiles({"domain", "verbose", "rc"})
 public class ReadCommittedIsolationTest extends AbstractIsolationTest {
     @Order(0)
     @Test

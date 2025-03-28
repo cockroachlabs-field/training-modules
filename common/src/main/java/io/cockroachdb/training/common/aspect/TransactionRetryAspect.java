@@ -121,8 +121,8 @@ public class TransactionRetryAspect {
 
         throw new ConcurrencyFailureException(
                 "Too many transient SQL errors (" + methodCalls + ") for method ["
-                        + pjp.getSignature().toShortString()
-                        + "]. Giving up!");
+                + pjp.getSignature().toShortString()
+                + "]. Giving up!");
     }
 }
 

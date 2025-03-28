@@ -30,10 +30,10 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import org.springframework.transaction.support.TransactionTemplate;
 
 import io.cockroachdb.training.Chapter3Application;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.repository.ProductRepository;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
-import io.cockroachdb.training.util.StreamUtils;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.repository.ProductRepository;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.util.StreamUtils;
 
 @SpringBootTest(classes = {Chapter3Application.class})
 public class BatchInsertTest extends AbstractIntegrationTest {

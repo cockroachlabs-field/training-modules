@@ -12,21 +12,20 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
 
 import io.cockroachdb.training.common.annotation.ServiceFacade;
 import io.cockroachdb.training.common.annotation.TimeTravel;
 import io.cockroachdb.training.common.annotation.TimeTravelMode;
 import io.cockroachdb.training.common.annotation.TransactionExplicit;
 import io.cockroachdb.training.common.annotation.TransactionImplicit;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.PurchaseOrderItem;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.repository.OrderRepository;
-import io.cockroachdb.training.repository.ProductRepository;
-import io.cockroachdb.training.util.AssertUtils;
-import io.cockroachdb.training.util.StreamUtils;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.PurchaseOrderItem;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.repository.OrderRepository;
+import io.cockroachdb.training.domain.repository.ProductRepository;
+import io.cockroachdb.training.domain.util.AssertUtils;
+import io.cockroachdb.training.domain.util.StreamUtils;
 
 /**
  * Business service facade for the order system. This service represents the

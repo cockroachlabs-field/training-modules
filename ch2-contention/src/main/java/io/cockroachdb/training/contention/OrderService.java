@@ -3,9 +3,9 @@ package io.cockroachdb.training.contention;
 import java.util.Optional;
 import java.util.UUID;
 
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.domain.Simulation;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.model.Simulation;
 
 public interface OrderService {
     Optional<PurchaseOrder> findOrderById(UUID id);

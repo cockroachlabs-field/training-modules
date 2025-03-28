@@ -18,11 +18,11 @@ import io.cockroachdb.training.Chapter1Application;
 import io.cockroachdb.training.common.aspect.MetadataUtils;
 import io.cockroachdb.training.common.retry.TransientExceptionClassifier;
 import io.cockroachdb.training.common.retry.TransientExceptionRetryListener;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.ShipmentStatus;
-import io.cockroachdb.training.domain.Simulation;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
+import io.cockroachdb.training.domain.model.Simulation;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
 
 /**
  * Assume there is one existing order with status `placed`. We will read that order and

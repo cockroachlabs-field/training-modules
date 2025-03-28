@@ -1,4 +1,4 @@
-package io.cockroachdb.training.test;
+package io.cockroachdb.training.domain.test;
 
 /**
  * Represents an operation that accepts two input arguments (A,B) and returns a

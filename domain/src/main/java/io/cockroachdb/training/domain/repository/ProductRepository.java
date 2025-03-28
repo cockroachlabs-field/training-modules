@@ -1,4 +1,4 @@
-package io.cockroachdb.training.repository;
+package io.cockroachdb.training.domain.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.LockModeType;
 
-import io.cockroachdb.training.domain.Product;
+import io.cockroachdb.training.domain.model.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {

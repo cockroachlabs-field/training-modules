@@ -1,4 +1,4 @@
-package io.cockroachdb.training.util;
+package io.cockroachdb.training.domain.util;
 
 import java.lang.reflect.UndeclaredThrowableException;
 import java.time.Duration;

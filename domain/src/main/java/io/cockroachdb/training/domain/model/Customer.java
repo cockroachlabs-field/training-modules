@@ -1,4 +1,4 @@
-package io.cockroachdb.training.domain;
+package io.cockroachdb.training.domain.model;
 
 import java.util.UUID;
 

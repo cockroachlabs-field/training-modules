@@ -1,4 +1,4 @@
-package io.cockroachdb.training.util;
+package io.cockroachdb.training.domain.util;
 
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.util.Assert;

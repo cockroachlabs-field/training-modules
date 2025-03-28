@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import io.cockroachdb.training.Chapter3Application;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
-import io.cockroachdb.training.test.TestDoubles;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
+import io.cockroachdb.training.domain.test.TestDoubles;
 
 @SpringBootTest(classes = {Chapter3Application.class})
 public class DataLoadTest extends AbstractIntegrationTest {

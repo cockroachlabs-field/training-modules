@@ -1,4 +1,4 @@
-package io.cockroachdb.training.repository;
+package io.cockroachdb.training.domain.repository;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.LockModeType;
 
-import io.cockroachdb.training.domain.PurchaseOrder;
-import io.cockroachdb.training.domain.ShipmentStatus;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.model.ShipmentStatus;
 
 @Repository
 public interface OrderRepository extends JpaRepository<PurchaseOrder, UUID> {

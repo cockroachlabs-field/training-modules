@@ -28,7 +28,7 @@ spring:
           # See: org.hibernate.cfg.BatchSettings
         order_inserts: true
         order_updates: true
-#        generate_statistics: true
+        #        generate_statistics: true
         hql:
           bulk_id_strategy: org.hibernate.hql.spi.id.inline.CteValuesListBulkIdStrategy
         cache:

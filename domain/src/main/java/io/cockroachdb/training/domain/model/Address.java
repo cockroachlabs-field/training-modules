@@ -1,4 +1,4 @@
-package io.cockroachdb.training.domain;
+package io.cockroachdb.training.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -97,11 +97,11 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "address1='" + address1 + '\'' +
-                ", address2='" + address2 + '\'' +
-                ", city='" + city + '\'' +
-                ", postcode='" + postcode + '\'' +
-                ", country=" + country +
-                '}';
+               "address1='" + address1 + '\'' +
+               ", address2='" + address2 + '\'' +
+               ", city='" + city + '\'' +
+               ", postcode='" + postcode + '\'' +
+               ", country=" + country +
+               '}';
     }
 }

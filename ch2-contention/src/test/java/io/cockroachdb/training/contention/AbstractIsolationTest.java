@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import io.cockroachdb.training.Chapter2Application;
-import io.cockroachdb.training.common.retry.TransientExceptionRetryListener;
-import io.cockroachdb.training.domain.Product;
-import io.cockroachdb.training.domain.PurchaseOrder;
 import io.cockroachdb.training.common.retry.TransientExceptionClassifier;
-import io.cockroachdb.training.test.AbstractIntegrationTest;
+import io.cockroachdb.training.common.retry.TransientExceptionRetryListener;
+import io.cockroachdb.training.domain.model.Product;
+import io.cockroachdb.training.domain.model.PurchaseOrder;
+import io.cockroachdb.training.domain.test.AbstractIntegrationTest;
 
 @SpringBootTest(classes = {Chapter2Application.class})
 public abstract class AbstractIsolationTest extends AbstractIntegrationTest {

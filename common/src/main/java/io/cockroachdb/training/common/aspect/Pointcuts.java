@@ -18,7 +18,7 @@ public class Pointcuts {
      * Pointcut expression matching all transactional boundaries.
      */
     @Pointcut("execution(public * *(..)) "
-            + "&& @annotation(transactionExplicit)")
+              + "&& @annotation(transactionExplicit)")
     public void anyExplicitTransactionBoundary(TransactionExplicit transactionExplicit) {
     }
 
@@ -26,7 +26,7 @@ public class Pointcuts {
      * Pointcut expression matching all non-transactional operations.
      */
     @Pointcut("execution(public * *(..)) "
-            + "&& @annotation(transactionImplicit)")
+              + "&& @annotation(transactionImplicit)")
     public void anyImplicitTransactionOperation(TransactionImplicit transactionImplicit) {
     }
 
@@ -34,7 +34,7 @@ public class Pointcuts {
      * Pointcut expression matching all retryable operations.
      */
     @Pointcut("execution(public * *(..)) "
-            + "&& @annotation(retryable)")
+              + "&& @annotation(retryable)")
     public void anyRetryableOperation(Retryable retryable) {
     }
 }
